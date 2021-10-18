@@ -1,0 +1,10 @@
+.content {
+  margin: 1rem 3rem;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  padding: 20px;
+}

@@ -1,14 +1,15 @@
 import { Button } from 'antd';
 import type { NextPage } from 'next';
 
+import Layout from '../components/Layout';
+
 const Home: NextPage = () => {
   return (
-    <div className="container">
-      <Button type="primary">Click me</Button>
+    <Layout>
+      <h1 className="orange">Home</h1>
 
-      <div className="orange" />
-      <div className="red" />
-    </div>
+      <Button type="primary">Click me</Button>
+    </Layout>
   );
 };
 
