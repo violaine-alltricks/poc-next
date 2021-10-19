@@ -1,15 +1,13 @@
-import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import { logout } from '../utils';
 import { NextPage } from 'next';
+import { useDispatch } from 'react-redux';
+import { logoutRequest } from '../redux/actions';
 
 const Logout: NextPage = () => {
-  const router = useRouter();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    logout();
-
-    router.push('/');
+    dispatch(logoutRequest());
   }, []);
 
   return null;

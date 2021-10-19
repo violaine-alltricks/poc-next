@@ -1,20 +1,22 @@
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { Button } from 'antd';
 import { useEffect } from 'react';
-import { isAuthenticated } from '../utils';
 import { NextPage } from 'next';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginRequest } from '../redux/actions';
+import { AppState } from '../redux/store';
 
 const Login: NextPage = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state: AppState) => state.auth.isAuthenticated);
 
   const onClick = () => {
-    window.localStorage.setItem('token', 'token');
-
-    Router.push('/');
+    dispatch(loginRequest());
   };
 
   useEffect(() => {
-    if (isAuthenticated()) {
+    if (isAuthenticated) {
       router.push('/');
     }
   }, []);
