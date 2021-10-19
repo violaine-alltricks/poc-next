@@ -3,9 +3,15 @@ import { Button } from 'antd';
 import Add from './add';
 import Edit from './edit';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
+import { deleteItemRequest, listFetchRequested } from '../../redux/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppState } from '../../redux/store';
+
+import styles from './listLayout.module.css';
+import { People } from '../../domain/People';
 
 type ListLayoutProps = {
   panel?: string;
@@ -14,31 +20,31 @@ type ListLayoutProps = {
 const ListLayout: React.FC<ListLayoutProps> = ({ panel }) => {
   const location = useLocation();
   const [currentPanel, setCurrentPanel] = useState('close');
-  const [sw, setSw] = useState<Record<string, string>[]>([]);
+  const dispatch = useDispatch();
+  const peoples = useSelector((state: AppState) => state.list.list);
+
+  const item: People | undefined = useMemo(() => {
+    const idx = peoples.findIndex(
+      (e) => e.id === location.pathname.split('/')[location.pathname.split('/').length - 1]
+    );
+
+    return peoples[idx];
+  }, [peoples]);
 
   useEffect(() => {
     setCurrentPanel(panel ?? 'close');
   }, [panel]);
 
   useEffect(() => {
-    fetch('https://swapi.dev/api/people')
-      .then((res) => res.json())
-      .then((body) => {
-        setSw(body.results);
-      });
+    dispatch(listFetchRequested());
   }, []);
+
+  console.log(item);
 
   return (
     <>
       <Add status={currentPanel === 'add' ? 'open' : 'close'} />
-      <Edit
-        status={currentPanel === 'edit' ? 'open' : 'close'}
-        item={
-          sw.find(
-            (e) => e.name === location.pathname.split('/')[location.pathname.split('/').length - 1]
-          ) ?? {}
-        }
-      />
+      <Edit status={currentPanel === 'edit' ? 'open' : 'close'} item={item} />
 
       <Link to="/list/add">
         <Button type="primary">Show add</Button>
@@ -46,13 +52,16 @@ const ListLayout: React.FC<ListLayoutProps> = ({ panel }) => {
 
       <div>List Page</div>
 
-      <ul>
-        {sw.map((e) => (
-          <li key={e.name}>
-            <Link to={`/list/edit/${e.name}`}>
+      <ul className={styles.list}>
+        {peoples.map((e) => (
+          <li key={e.id} className={styles.listItem}>
+            <Link to={`/list/edit/${e.id}`}>
               <Button type="primary">Edit</Button>
             </Link>
-            {e.name}
+            <span className={styles.people}>{e.name}</span>
+            <Button type="danger" onClick={() => dispatch(deleteItemRequest(e.id))}>
+              Delete
+            </Button>
           </li>
         ))}
       </ul>

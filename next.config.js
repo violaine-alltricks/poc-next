@@ -5,7 +5,7 @@ const withAntdLess = require('next-plugin-antd-less');
 module.exports = withAntdLess({
   // optional
   modifyVars: {
-    '@primary-color': '#50cc0e',
+    '@primary-color': '#52b3e1',
   },
 
   sassOptions: {
