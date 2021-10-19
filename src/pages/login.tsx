@@ -10,7 +10,6 @@ const Login: NextPage = () => {
   const onClick = () => {
     window.localStorage.setItem('token', 'token');
 
-    console.log('auth');
     Router.push('/');
   };
 

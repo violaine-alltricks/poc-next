@@ -2,7 +2,7 @@ import { Button } from 'antd';
 import styles from './add-edit.module.css';
 import Form from './form';
 
-import { useRouter } from 'next/router';
+import { Link } from 'react-router-dom';
 
 type EditProps = {
   status: 'open' | 'close';
@@ -10,13 +10,11 @@ type EditProps = {
 };
 
 const Edit: React.FC<EditProps> = ({ status, item }) => {
-  const router = useRouter();
-
   return (
     <div className={styles[status]}>
-      <Button type="danger" onClick={() => router.push('/list', '/list', { shallow: true })}>
-        X
-      </Button>
+      <Link to="/list">
+        <Button type="danger">X</Button>
+      </Link>
 
       <Form mode="edit" item={item} />
     </div>

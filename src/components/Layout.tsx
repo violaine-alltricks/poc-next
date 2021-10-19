@@ -1,21 +1,21 @@
-import Link from 'next/link';
+import NextLink from 'next/link';
 
 import styles from './layout.module.css';
 
 const Layout: React.FC = ({ children }) => (
   <div>
     <nav className={styles.navbar}>
-      <Link href="/">
+      <NextLink href="/">
         <a>Home</a>
-      </Link>
+      </NextLink>
 
-      <Link href="/list">
+      <NextLink href="/list">
         <a>List</a>
-      </Link>
+      </NextLink>
 
-      <Link href="/logout">
+      <NextLink href="/logout">
         <a>Logout</a>
-      </Link>
+      </NextLink>
     </nav>
 
     <main className={styles.content}>{children}</main>
