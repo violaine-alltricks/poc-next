@@ -1,26 +1,42 @@
 import { Button } from 'antd';
-import Link from 'next/link';
+
 import { useRouter } from 'next/router';
 import Add from '../../components/add';
 import Edit from '../../components/edit';
 
-import Layout from '../../components/Layout';
-import ListLayout, { useListContext } from '../../components/listLayout';
-import { Page } from '../../types';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
-const List: Page = () => {
+const List: React.FC = () => {
   const router = useRouter();
-  const { sw, panel } = useListContext();
+  const [asFetch, setAsFetch] = useState(false);
+  const [panel, setPanel] = useState('close');
+  const [sw, setSw] = useState<Record<string, string>[]>([]);
+
+  useEffect(() => {
+    const p = router.query.mode ?? ('close' as string);
+
+    setPanel(p as string);
+  }, [router]);
+
+  useEffect(() => {
+    fetch('https://swapi.dev/api/people')
+      .then((res) => res.json())
+      .then((body) => {
+        setSw(body.results);
+        setAsFetch(true);
+      });
+  }, []);
 
   return (
-    <Layout>
+    <>
       <Add status={panel === 'add' ? 'open' : 'close'} />
       <Edit
         status={panel === 'edit' ? 'open' : 'close'}
         item={sw.find((e) => e.name === router.query.slug?.[1])}
       />
 
-      <Link href="/list/add">
+      <Link href="/list?mode=add">
         <a>
           <Button type="primary">Show add</Button>
         </a>
@@ -31,7 +47,7 @@ const List: Page = () => {
       <ul>
         {sw.map((e) => (
           <li key={e.name}>
-            <Link href={`/list/edit/${e.name}`}>
+            <Link href={`/list?mode=edit&id=${e.name}`}>
               <a>
                 <Button type="primary">Edit</Button>
               </a>
@@ -40,12 +56,8 @@ const List: Page = () => {
           </li>
         ))}
       </ul>
-    </Layout>
+    </>
   );
-};
-
-List.getLayout = function getLayout(page) {
-  return <ListLayout>{page}</ListLayout>;
 };
 
 export default List;
