@@ -24,7 +24,9 @@ const Edit: React.FC<EditProps> = ({ status, item }) => {
       <Form mode="edit" item={item} onSubmit={onSubmit} />
 
       <Link to="/list">
-        <Button type="danger">X</Button>
+        <Button type="default" danger>
+          X
+        </Button>
       </Link>
     </div>
   );

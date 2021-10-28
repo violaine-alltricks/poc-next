@@ -17,13 +17,13 @@ function* fetchList() {
     );
 
     yield put(listFetchSuccess(peoples));
-  } catch (e) {
+  } catch (e: any) {
     console.log(e);
-    yield put(listFetchError(e));
+    yield put(listFetchError(e.toString()));
   }
 }
 
-function* addItem({ payload }: { payload: Omit<People, 'id'> }) {
+function* addItem({ type, payload }: { type: 'ADD_ITEM_REQUEST'; payload: Omit<People, 'id'> }) {
   try {
     const people: People = yield call(
       inMemoryPeopleGateway.addPeople.bind(inMemoryPeopleGateway),
@@ -37,7 +37,7 @@ function* addItem({ payload }: { payload: Omit<People, 'id'> }) {
   }
 }
 
-function* editItem({ payload }: { payload: People }) {
+function* editItem({ type, payload }: { type: 'EDIT_ITEM_REQUEST'; payload: People }) {
   try {
     const people: People = yield call(
       inMemoryPeopleGateway.editPeople.bind(inMemoryPeopleGateway),
@@ -52,7 +52,7 @@ function* editItem({ payload }: { payload: People }) {
   }
 }
 
-function* deleteItem({ payload }: { payload: string }) {
+function* deleteItem({ type, payload }: { type: 'DELETE_ITEM_REQUEST'; payload: string }) {
   try {
     yield call(inMemoryPeopleGateway.removePeople.bind(inMemoryPeopleGateway), payload);
 

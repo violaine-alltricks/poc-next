@@ -22,7 +22,9 @@ const Add: React.FC<AddProps> = ({ status }) => {
       <Form mode="add" onSubmit={onSubmit} />
 
       <Link to="/list">
-        <Button type="danger">X</Button>
+        <Button type="default" danger>
+          X
+        </Button>
       </Link>
     </div>
   );

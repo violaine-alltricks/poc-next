@@ -13,6 +13,22 @@ const Layout: React.FC = ({ children }) => (
         <a>List</a>
       </NextLink>
 
+      <NextLink href="/sw/1">
+        <a>SW 1</a>
+      </NextLink>
+
+      <NextLink href="/sw/2">
+        <a>SW 2</a>
+      </NextLink>
+
+      <NextLink href="/sw/3">
+        <a>SW 3</a>
+      </NextLink>
+
+      <NextLink href="/sw/4">
+        <a>SW 4</a>
+      </NextLink>
+
       <NextLink href="/logout">
         <a>Logout</a>
       </NextLink>
