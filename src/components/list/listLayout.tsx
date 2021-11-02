@@ -39,8 +39,6 @@ const ListLayout: React.FC<ListLayoutProps> = ({ panel }) => {
     dispatch(listFetchRequested());
   }, []);
 
-  console.log(item);
-
   return (
     <>
       <Add status={currentPanel === 'add' ? 'open' : 'close'} />
@@ -59,7 +57,7 @@ const ListLayout: React.FC<ListLayoutProps> = ({ panel }) => {
               <Button type="primary">Edit</Button>
             </Link>
             <span className={styles.people}>{e.name}</span>
-            <Button type="danger" onClick={() => dispatch(deleteItemRequest(e.id))}>
+            <Button type="default" danger onClick={() => dispatch(deleteItemRequest(e.id))}>
               Delete
             </Button>
           </li>
