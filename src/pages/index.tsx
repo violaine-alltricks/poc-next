@@ -1,22 +1,9 @@
-import dynamic from 'next/dynamic';
 import type { NextPage } from 'next';
 import { useState } from 'react';
 
 import Layout from '../components/Layout';
 
-import { Button, ButtonProps, Alert } from 'antd';
-import { LoaderProps } from 'react-components/dist/components/widget/Loader';
-
-const Loader = dynamic<LoaderProps>(
-  () => import('react-components').then((modules) => modules.Loader),
-  {
-    ssr: false,
-  }
-);
-
-// const Button = dynamic<ButtonProps>(() => import('antd').then((module) => module.Button), {
-//   ssr: false,
-// });
+import { Button, Alert } from 'antd';
 
 const Home: NextPage = () => {
   const [greetings, setGreetings] = useState(false);
@@ -24,8 +11,6 @@ const Home: NextPage = () => {
   return (
     <Layout>
       <h1 className="orange">Home</h1>
-
-      <Loader />
 
       {greetings && <h2>Hello you!</h2>}
 

@@ -2169,7 +2169,7 @@ less-loader@^7:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
 
-less@^4.1.1:
+less@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/less/-/less-4.1.2.tgz#6099ee584999750c2624b65f80145f8674e4b4b0"
   integrity sha512-EoQp/Et7OSOVu0aJknJOtlXZsnr8XE8KwuzTHOLeVSEx8pVWUICc8Q0VYRHgzyjX78nMEyC/oztWFbgyhtNfDA==
@@ -2388,12 +2388,12 @@ needle@^2.5.2:
     sax "^1.2.4"
 
 next-plugin-antd-less@^1.4.3:
-  version "1.4.3"
-  resolved "https://registry.yarnpkg.com/next-plugin-antd-less/-/next-plugin-antd-less-1.4.3.tgz#848bb43e5769356f08f6f60731bd6dcf60bd8eeb"
-  integrity sha512-qU/p9uH3AoTbmIvm3IFfZesDxDYlC4C7+pjuKA0nCUuYOio8nn5L9P1PX/jXbh82PfhO5+y9agjCMpCiPX+23Q==
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/next-plugin-antd-less/-/next-plugin-antd-less-1.5.2.tgz#8c73d2a9f5db991a6420ca272f71a58fba2db2e6"
+  integrity sha512-zszb/enAq5icB+M0JUMhrFyE+8V2nakD0Cw8FC9zltlri4fuIPRmoh36vhol5OJKlEpFc8g5D/adyuJv4M7OUg==
   dependencies:
     clone "^2.1.2"
-    less "^4.1.1"
+    less "^4.1.2"
     less-loader "^7"
     null-loader "^4.0.1"
 
@@ -3241,9 +3241,6 @@ rc-virtual-list@^3.0.1, rc-virtual-list@^3.2.0:
     classnames "^2.2.6"
     rc-resize-observer "^1.0.0"
     rc-util "^5.0.7"
-
-"react-components@file:../avanis/appsv3/react/common/react-components":
-  version "1.1.0"
 
 react-dom@17.0.2:
   version "17.0.2"

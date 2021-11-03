@@ -3,13 +3,11 @@
 const withAntdLess = require('next-plugin-antd-less');
 
 module.exports = withAntdLess({
-  // optional
-  modifyVars: {
-    '@primary-color': '#52b3e1',
-  },
+  lessVarsFilePath: './styles/antd-theme.less',
+  lessVarsFilePathAppendToEndOfContent: false,
 
   sassOptions: {
-    prependData: '@import "./public/sass/_variables.scss";',
+    prependData: '@import "./styles/_variables.scss";',
   },
 
   reactStrictMode: true,
