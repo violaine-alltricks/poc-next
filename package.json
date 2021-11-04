@@ -17,6 +17,7 @@
     "next": "11.1.2",
     "next-plugin-antd-less": "^1.4.3",
     "react": "17.0.2",
+    "react-components": "file:../avanis/appsv3/react/common/react-components",
     "react-dom": "17.0.2",
     "react-i18next": "^11.12.0",
     "react-leaflet-universal": "^2.2.1",
