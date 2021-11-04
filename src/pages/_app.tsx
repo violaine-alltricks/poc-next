@@ -6,8 +6,6 @@ import { InMemoryPeopleGateway } from '../domain/shared/InMemoryGateway';
 
 export const inMemoryPeopleGateway = new InMemoryPeopleGateway();
 
-import 'react-components/reactComponent.css';
-
 import '../styles/antd.css';
 import '../styles/globals.css';
 import '../styles/Home.scss';

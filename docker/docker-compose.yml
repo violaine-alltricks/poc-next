@@ -1,0 +1,29 @@
+version: "3.7"
+
+x-volumes:
+  &application-volumes-apps
+    - ../:/var/www/html
+
+x-volumes-out:
+  &export-volumes-apps
+    - ../out:/var/www/html
+
+services:
+  nodejs:
+    build:
+      context: node
+      dockerfile: Dockerfile
+    volumes:
+      *application-volumes-apps
+    working_dir: /var/www/html
+    ports:
+      - 3000:3000
+
+  nginx:
+      build:
+        context: nginx
+        dockerfile: Dockerfile
+      volumes:
+        *export-volumes-apps
+      ports:
+        - 80:80

@@ -2,9 +2,7 @@ import type { NextPage } from 'next';
 import { useState } from 'react';
 
 import Layout from '../components/Layout';
-
-import { Button } from 'react-components';
-// import { Button } from 'antd'
+import { Button } from 'antd'
 
 const Home: NextPage = () => {
   const [greetings, setGreetings] = useState(false);
